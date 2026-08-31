@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name # TODO: set this to your Azure App Service name
+  AZURE_WEBAPP_NAME: kariregidor-petcare # TODO: must match the Azure App Service name you create
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
   PROJECT_PATH: "Proyecto1-1-1548-0877/Proyecto1-1-1548-0877/Proyecto1-1-1548-0877.csproj"
   DOTNET_VERSION: "8.0.x"
