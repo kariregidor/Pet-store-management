@@ -1,0 +1,66 @@
+﻿@model Proyecto1_1_1548_0877.Models.Empleados
+
+@{
+    ViewData["Title"] = "Eliminar empleado";
+}
+
+<h1>Delete</h1>
+
+<h3>¿Está seguro de que desea eliminar este empleado?</h3>
+<div>
+    <h4>Empleados</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.FechaNacimiento)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.FechaIngreso)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SalarioDia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SalarioDia)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaRetiro)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.FechaRetiro)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoEmpleado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoEmpleado)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <!-- ← Cambiar a "Delete" -->
+        <input type="hidden" name="cedula" value="@Model.Cedula" />
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    </form>
+</div>
+<div>
+    <a asp-action="IndexEmpleados">Regresar</a>
+</div>

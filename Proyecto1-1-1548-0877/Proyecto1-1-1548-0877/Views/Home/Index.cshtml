@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Menú Principal";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Menú Principal</h1>
+    <p class="lead">Seleccione una opción:</p>
+</div>
+
+<div class="d-flex justify-content-center flex-wrap mt-4">
+    <!-- Leer:  visualizar los registros existentes de cada entidad -->
+    <!-- Controlador                             VistaIndex                 Boton -->
+    <a asp-controller="Empleados" asp-action="IndexEmpleados" class="btn btn-primary m-2 p-3">
+        👨‍⚕️ Empleados
+    </a>
+
+    <a asp-controller="Mascotas" asp-action="IndexMascotas" class="btn btn-success m-2 p-3">
+        🐾 Mascotas
+    </a>
+
+    <a asp-controller="Clientes" asp-action="IndexClientes" class="btn btn-info m-2 p-3">
+        🧑‍🤝‍🧑 Clientes
+    </a>
+
+    <a asp-controller="Procedimientos" asp-action="IndexProcedimientos" class="btn btn-warning m-2 p-3">
+        📋 Procedimientos
+    </a>
+
+    <a asp-controller="Reportes" asp-action="IndexReportes"
+       class="btn m-2 p-3"
+       style="background-color:#ff9800; border-color:#e68900; color:black;">
+        📋 Reportes
+    </a>
+</div>
+
+
+
+<!--
+    Link video:
+    https://www.youtube.com/watch?v=F-vcVwizfYo
+
+
+Anderson, R., Brock, D., & Larkin, K. (2025, agosto 27). Razor Pages architecture and concepts in ASP.NET Core. Microsoft
+Learn. https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-9.0
+
+Enums: Microsoft. (2025, noviembre 17–21). Enum.GetValues Method. Microsoft Learn.
+https://learn.microsoft.com/en-us/dotnet/api/system.enum.getvalues?view=net-9.0
+
+Irsharp23. (2025, 17 de febrero). Displaying all records of a SQL Server table in a Razor Page. SQLTeam.com.
+https://forums.sqlteam.com/t/displaying-all-records-of-a-sql-server-table-in-a-razor-page/27498
+
+
+-->

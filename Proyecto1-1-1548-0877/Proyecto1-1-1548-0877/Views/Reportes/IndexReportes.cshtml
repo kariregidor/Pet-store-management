@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Proyecto1_1_1548_0877.Models.Reportes>
+
+@{
+    ViewData["Title"] = "Reporte de Procedimientos";
+}
+
+<h2>Reporte de Procedimientos</h2>
+
+
+
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>ID Reporte</th>
+                <th>ID Cliente</th>
+                <th>Cliente</th>
+                <th>ID Mascota</th>
+                <th>Mascota</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Peso</th>
+                <th>Precio Base</th>
+                <th>IVA</th>
+                <th>Precio Total</th>
+                <th>Fecha Vacunación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdReporte</td>
+                    <td>@item.IdCliente</td>
+                    <td>@item.NombreCliente </td>
+                    <td>@item.MascotaId</td>
+                    <td>@item.NombreMascota </td>
+                    <td>@item.TipoProcedimiento?.ToString()  </td>
+                    <td>@item.EstadoProcedimiento?.ToString()  </td>
+                    <td>@item.Peso?.ToString("N2")  </td>
+                    <td>@item.PrecioBase?.ToString("C")  </td>
+                    <td>@item.IVA?.ToString("C")  </td>
+                    <td>@item.PrecioTotal?.ToString("C")   </td>
+                    <td>@item.FechaVacunacion?.ToString("dd/MM/yyyy")   </td>
+
+                    <td>
+                        <a asp-controller="Reportes"
+                           asp-action="Delete"
+                           asp-route-id="@item.IdReporte"
+                           class="btn btn-danger btn-sm">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="alert alert-info">
+                <strong>Total de registros:</strong> @Model.Count()
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="text-muted mt-4">No hay resultados para los filtros seleccionados.</p>
+}
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>

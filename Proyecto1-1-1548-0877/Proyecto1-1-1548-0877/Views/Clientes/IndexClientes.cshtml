@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Proyecto1_1_1548_0877.Models.Cliente>
+
+@{
+    ViewData["Title"] = "🧑‍🤝‍🧑 Clientes";
+}
+
+<h1>🧑‍🤝‍🧑 Clientes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Crear Clientes</a>
+    <a asp-action="Buscar" class="btn btn-info">🔍 Buscar Clientes</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Canton)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distrito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DireccionExacta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreferenciaContacto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Canton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionExacta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreferenciaContacto)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdCliente }) |
+                
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCliente })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>

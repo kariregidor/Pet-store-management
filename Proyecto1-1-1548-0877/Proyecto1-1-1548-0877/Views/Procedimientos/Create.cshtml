@@ -1,0 +1,194 @@
+﻿@model Proyecto1_1_1548_0877.Models.Procedimientos
+
+@{
+    ViewData["Title"] = "Crear procedimiento";
+}
+
+<h1>Crear Procedimiento</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- ID -->
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <fieldset class="border p-3 mb-3 rounded bg-light">
+                <legend class="w-auto px-2 h5">👤 Información del Dueño</legend>
+
+                <div class="form-group mb-3">
+                    <label asp-for="IdCliente" class="control-label fw-bold">Dueño</label>
+                    <select asp-for="IdCliente" id="ddlClientes" class="form-control" asp-items="@ViewBag.Clientes" required>
+                        <option value="">-- Seleccione un cliente --</option>
+                    </select>
+                    <span asp-validation-for="IdCliente" class="text-danger"></span>
+                    <small class="form-text text-muted">
+                        Seleccione el cliente dueño de la mascota.
+                        <a asp-controller="Clientes" asp-action="Create" target="_blank">
+                            ¿No está registrado? Crear nuevo cliente
+                        </a>
+                    </small>
+                </div>
+            </fieldset>
+
+            <!-- Nombre Mascota -->
+            <div class="form-group">
+                <label asp-for="MascotaId" class="control-label"></label>
+                <select asp-for="MascotaId" id="ddlMascotas" class="form-control">
+                    <option value="">-- Seleccione mascota --</option>
+                </select>
+                <span asp-validation-for="MascotaId" class="text-danger"></span>
+            </div>
+
+            <!-- Tabla de Tipos de Procedimiento -->
+            <h4>Tipos de Procedimiento</h4>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                        <th>Precio Base (₡)</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Consulta</td><td>Consulta de mascota</td><td>15000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Consulta" data-precio="15000" /></td></tr>
+                    <tr><td>Consulta en horario especial</td><td>Consulta después de las 18:00 hrs o fines de semana/feriados</td><td>17000</td><td><input type="radio" asp-for="TipoProcedimiento" value="ConsultaHorarioEspecial" data-precio="17000" /></td></tr>
+                    <tr><td>Castración 0-5 kg</td><td>Mascota castrada con peso 0-5 kg</td><td>35000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Castracion_0_5kg" data-precio="35000" /></td></tr>
+                    <tr><td>Castración 5-10 kg</td><td>Mascota castrada con peso 5-10 kg</td><td>45000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Castracion_5_10kg" data-precio="45000" /></td></tr>
+                    <tr><td>Castración 10-20 kg</td><td>Mascota castrada con peso 10-20 kg</td><td>55000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Castracion_10_20kg" data-precio="55000" /></td></tr>
+                    <tr><td>Castración 20-30 kg</td><td>Mascota castrada con peso 20-30 kg</td><td>80000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Castracion_20_30kg" data-precio="80000" /></td></tr>
+                    <tr><td>Castración 30-50 kg</td><td>Mascota castrada con peso 30-50 kg</td><td>100000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Castracion_30_50kg" data-precio="100000" /></td></tr>
+                    <tr><td>Cirugía menor</td><td>Costo por kilo de peso del paciente</td><td>15000</td><td><input type="radio" asp-for="TipoProcedimiento" value="CirugiaMenor" data-precio="15000" /></td></tr>
+                    <tr><td>Cirugía mayor</td><td>Costo por kilo de peso del paciente</td><td>25000</td><td><input type="radio" asp-for="TipoProcedimiento" value="CirugiaMayor" data-precio="25000" /></td></tr>
+                    <tr><td>Grooming pequeña</td><td>Grooming completo de mascota pequeña</td><td>15000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Grooming_Pequeña" data-precio="15000" /></td></tr>
+                    <tr><td>Grooming mediana</td><td>Grooming completo de mascota mediana</td><td>20000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Grooming_Mediana" data-precio="20000" /></td></tr>
+                    <tr><td>Grooming grande</td><td>Grooming completo de mascota grande</td><td>25000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Grooming_Grande" data-precio="25000" /></td></tr>
+                    <tr><td>Grooming extra grande</td><td>Grooming completo de mascota extra grande</td><td>35000</td><td><input type="radio" asp-for="TipoProcedimiento" value="Grooming_ExtraGrande" data-precio="35000" /></td></tr>
+                    <tr><td>Vacunas anuales</td><td>Vacunas anuales de mascota</td><td>40000</td><td><input type="radio" asp-for="TipoProcedimiento" value="VacunasAnuales" data-precio="40000" /></td></tr>
+                </tbody>
+            </table>
+
+            <!-- Peso -->
+            <div class="form-group">
+                <label asp-for="Peso" class="control-label"></label>
+                <input asp-for="Peso" class="form-control" id="Peso" />
+                <span asp-validation-for="Peso" class="text-danger"></span>
+            </div>
+
+            <!-- Precio Base -->
+            <div class="form-group">
+                <label asp-for="PrecioBase" class="control-label"></label>
+                <input asp-for="PrecioBase" class="form-control" readonly id="PrecioBase" />
+                <span asp-validation-for="PrecioBase" class="text-danger"></span>
+            </div>
+
+            <!-- IVA -->
+            <div class="form-group">
+                <label asp-for="IVA" class="control-label"></label>
+                <input asp-for="IVA" class="form-control" readonly id="IVA" />
+            </div>
+
+            <!-- Precio Total -->
+            <div class="form-group">
+                <label asp-for="PrecioTotal" class="control-label"></label>
+                <input asp-for="PrecioTotal" class="form-control" readonly id="PrecioTotal" />
+            </div>
+
+            <!-- Estado -->
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado" class="form-control" asp-items="ViewBag.EstadoProcedimiento">
+                    <option value="">-- Seleccione estado --</option>
+                </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+
+            <!-- Botón Guardar -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+    <a asp-action="IndexProcedimientos" class="btn btn-secondary">Volver a la lista</a>
+</div>
+
+<!-- Scripts -->
+@section Scripts {
+    <script>
+        // ✅ Script para calcular precios y IVA
+        document.addEventListener("DOMContentLoaded", function () {
+            const radios = document.querySelectorAll('input[name="TipoProcedimiento"]');
+            const precioInput = document.getElementById('PrecioBase');
+            const ivaInput = document.getElementById('IVA');
+            const totalInput = document.getElementById('PrecioTotal');
+            const pesoInput = document.getElementById('Peso');
+
+            function actualizarPrecios() {
+                let precio = parseFloat(precioInput.value) || 0;
+                let peso = parseFloat(pesoInput.value) || 0;
+
+                const tipo = document.querySelector('input[name="TipoProcedimiento"]:checked')?.value;
+                if (tipo === "CirugiaMenor" || tipo === "CirugiaMayor") {
+                    precio *= peso;
+                }
+
+                precioInput.value = precio;
+                const iva = precio * 0.13;
+                ivaInput.value = iva.toFixed(2);
+                totalInput.value = (precio + iva).toFixed(2);
+            }
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const precio = parseFloat(this.getAttribute('data-precio')) || 0;
+                    precioInput.value = precio;
+                    actualizarPrecios();
+                });
+            });
+
+            pesoInput.addEventListener('input', actualizarPrecios);
+        });
+
+        // ✅ Script para cargar mascotas según cliente
+        $(document).ready(function () {
+            $('#ddlClientes').change(function () {
+                var idCliente = $(this).val();
+                var $ddlMascotas = $('#ddlMascotas');
+
+                $ddlMascotas.empty();
+                $ddlMascotas.append('<option value="">Cargando...</option>');
+
+                if (idCliente) {
+                    $.ajax({
+                        url: '/Procedimientos/GetMascotasByCliente',
+                        type: 'GET',
+                        data: { idCliente: idCliente },
+                        success: function (data) {
+                            $ddlMascotas.empty();
+                            $ddlMascotas.append('<option value="">-- Seleccione mascota --</option>');
+                            $.each(data, function (i, mascota) {
+                                $ddlMascotas.append('<option value="' + mascota.value + '">' + mascota.text + '</option>');
+                            });
+                        },
+                        error: function () {
+                            $ddlMascotas.empty();
+                            $ddlMascotas.append('<option value="">Error al cargar mascotas</option>');
+                        }
+                    });
+                } else {
+                    $ddlMascotas.empty();
+                    $ddlMascotas.append('<option value="">Seleccione un cliente primero</option>');
+                }
+            });
+        });
+    </script>
+}

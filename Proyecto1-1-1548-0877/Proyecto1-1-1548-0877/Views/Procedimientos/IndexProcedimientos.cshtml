@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Proyecto1_1_1548_0877.Models.Procedimientos>
+
+@{
+    ViewData["Title"] = " 📋 Procedimientos";
+}
+
+<h1>Procedimientos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Crear Procedimiento</a>
+    <a asp-action="Buscar" class="btn btn-info">🔍 Buscar Procedimiento</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                Nombre Mascota
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoProcedimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioBase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IVA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Mascota.NombreMascota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoProcedimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IVA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>

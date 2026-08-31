@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proyecto1_1_1548_0877.Models.Empleados>
+
+@{
+    ViewData["Title"] = "👨‍⚕️ Empleados ";
+}
+
+<h1>👨‍⚕️ Empleados</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Crear Empleados</a>
+    <a asp-action="Buscar" class="btn btn-info">🔍 Buscar Empleados</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Cedula)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaNacimiento)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaIngreso)</th>
+            <th>@Html.DisplayNameFor(model => model.SalarioDia)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaRetiro)</th>
+            <th>@Html.DisplayNameFor(model => model.TipoEmpleado)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Cedula)</td>
+                <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@item.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                <td>@Html.DisplayFor(modelItem => item.SalarioDia)</td>
+                <td>@(item.FechaRetiro.HasValue? item.FechaRetiro.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@Html.DisplayFor(modelItem => item.TipoEmpleado)</td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { cedula = item.Cedula }) |
+                   
+                    @Html.ActionLink("Eliminar", "Delete", new { cedula = item.Cedula })
+
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Regresar</a>
