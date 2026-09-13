@@ -186,6 +186,22 @@ namespace Proyecto1_1_1548_0877.Controllers
             return View(results.ToList());
         }
 
+        // Get customer information
+        [HttpGet]
+        public async Task<IActionResult> GetCustomerInfo(int id)
+        {
+            var customer = await _context.Customer
+                .FirstOrDefaultAsync(c => c.IdCustomer == id);
+
+            if (customer == null)
+                return NotFound();
+
+            return Json(new
+            {
+                phone = customer.Phone
+            });
+        }
+
 
 
         // Get customers list
