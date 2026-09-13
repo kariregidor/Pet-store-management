@@ -1,0 +1,71 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Employes>
+
+@{
+    ViewData["Title"] = "Search Employes";
+}
+
+<h1>Search Employes</h1>
+
+<form asp-action="Buscar" method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="text" name="Id" class="form-control" placeholder="Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="DateOfBirth" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="StartDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="SalaryPerDay" step="0.01" class="form-control" placeholder="Salary per day" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="RetirementDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <select name="TypeEmploye" class="form-control">
+                <option value="">-- Employe type --</option>
+                @foreach (var type in ViewBag.TypeEmployes)
+                {
+                    <option value="@type.Value">@type.Text</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="IndexEmployes" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date of birth</th>
+            <th>Start date</th>
+            <th>Salary per day</th>
+            <th>Retirement date</th>
+            <th>Employe type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employe in Model)
+        {
+            <tr>
+                <td>@employe.Id</td>
+                <td>@employe.DateOfBirth.ToString("dd-MM-yyyy")</td>
+                <td>@employe.StartDate.ToString("dd-MM-yyyy")</td>
+                <td>@employe.SalaryPerDay</td>
+                <td>@(employe.RetirementDate.HasValue? employe.RetirementDate.Value.ToString("dd-MM-yyyy") : "-")</td>
+                <td>@employe.TypeEmploye</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@employe.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@employe.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

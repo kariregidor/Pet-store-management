@@ -1,0 +1,297 @@
+@model Proyecto1_1_1548_0877.Models.Procedures
+
+
+@{
+    ViewData["Title"] = "Edit Procedure";
+}
+
+<h1>Edit Procedure</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- ID -->
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <!-- Customer -->
+            <div class="form-group">
+                <label asp-for="IdCustomer" class="control-label"></label>
+                <select asp-for="IdCustomer" class="form-control" asp-items="ViewBag.Customers" id="IdCustomer">
+                    <option value="">-- Select customer --</option>
+                </select>
+                <span asp-validation-for="IdCustomer" class="text-danger"></span>
+            </div>
+
+            <!-- Pet -->
+            <div class="form-group">
+                <label asp-for="PetId" class="control-label"></label>
+                <select asp-for="PetId" class="form-control" id="PetId" asp-items="ViewBag.Pets">
+                    <option value="">-- Select pet --</option>
+                </select>
+                <span asp-validation-for="PetId" class="text-danger"></span>
+            </div>
+
+            <!-- Hidden field to remember the selected pet -->
+            <input type="hidden" id="SelectedPet" value="@Model.PetId" />
+
+            <!-- Procedure Type Table -->
+            <h4>Procedure Types</h4>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Base price (₡)</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Consultation</td>
+                        <td>Pet consultation</td>
+                        <td>15000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Consultation" data-precio="15000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Consultation during special hours</td>
+                        <td>Consultation after 18:00 hrs or on weekends/holidays</td>
+                        <td>17000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="ConsultationSpecialHours" data-precio="17000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Neutering 0-5 kg</td>
+                        <td>Neutered pet weighing 0-5 kg</td>
+                        <td>35000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Neutering_0_5" data-precio="35000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Neutering 5-10 kg</td>
+                        <td>Neutered pet weighing 5-10 kg</td>
+                        <td>45000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Neutering_5_10" data-precio="45000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Neutering 10-20 kg</td>
+                        <td>Neutered pet weighing 10-20 kg</td>
+                        <td>55000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Neutering_10_20kg" data-precio="55000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Neutering 20-30 kg</td>
+                        <td>Neutered pet weighing 20-30 kg</td>
+                        <td>80000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Neutering_20_30kg" data-precio="80000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Neutering 30-50 kg</td>
+                        <td>Neutered pet weighing 30-50 kg</td>
+                        <td>100000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Neutering_30_50kg" data-precio="100000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Minor surgery</td>
+                        <td>Cost per kilo of patient weight</td>
+                        <td>15000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="MinorSurgery" data-precio="15000" class="procedure-type" data-por-kg="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Surgery</td>
+                        <td>Cost per kilo of patient weight</td>
+                        <td>25000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Surgery" data-precio="25000" class="procedure-type" data-por-kg="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grooming small</td>
+                        <td>Full grooming for a small pet</td>
+                        <td>15000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Grooming_Small" data-precio="15000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grooming medium</td>
+                        <td>Full grooming for a medium pet</td>
+                        <td>20000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Grooming_Medium" data-precio="20000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grooming big</td>
+                        <td>Full grooming for a big pet</td>
+                        <td>25000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Grooming_Big" data-precio="25000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Grooming extra big</td>
+                        <td>Full grooming for an extra big pet</td>
+                        <td>35000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="Grooming_ExtraBig" data-precio="35000" class="procedure-type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Annual vaccines</td>
+                        <td>Annual vaccines for a pet</td>
+                        <td>40000</td>
+                        <td>
+                            <input type="radio" name="ProcedureType" value="AnnualVaccines" data-precio="40000" class="procedure-type" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Weight -->
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" id="Weight" type="number" step="0.01" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+
+            <!-- Base Price -->
+            <div class="form-group">
+                <label asp-for="BasePrice" class="control-label"></label>
+                <input asp-for="BasePrice" class="form-control" readonly id="BasePrice" />
+                <span asp-validation-for="BasePrice" class="text-danger"></span>
+            </div>
+
+            <!-- VAT -->
+            <div class="form-group">
+                <label asp-for="VAT" class="control-label"></label>
+                <input asp-for="VAT" class="form-control" readonly id="VAT" />
+            </div>
+
+            <!-- Total Price -->
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input asp-for="TotalPrice" class="form-control" readonly id="TotalPrice" />
+            </div>
+
+            <!-- Status -->
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.ProcedureStatus">
+                    <option value="">-- Select status --</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <!-- Save button -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+    <a asp-action="IndexProcedures" class="btn btn-secondary">Back to list</a>
+</div>
+
+@section Scripts {
+    <script>
+        // =============================
+        // LOAD PETS DYNAMICALLY
+        // =============================
+        function loadPets(idCustomer, selectedPet) {
+            if (!idCustomer) {
+                $('#PetId').empty().append('<option value="">-- Select pet --</option>');
+                return;
+            }
+
+            $.getJSON('/Procedures/GetPetsByCustomer', { idCustomer: idCustomer }, function (pets) {
+                var $select = $('#PetId');
+                $select.empty();
+                $select.append('<option value="">-- Select pet --</option>');
+
+                $.each(pets, function (i, pet) {
+                    var option = $('<option>', {
+                        value: pet.value,
+                        text: pet.text
+                    });
+                    if (selectedPet && pet.value == selectedPet) {
+                        option.prop('selected', true);
+                    }
+                    $select.append(option);
+                });
+            });
+        }
+
+        $(document).ready(function () {
+            var customerId = $('#IdCustomer').val();
+            var selectedPet = $('#SelectedPet').val();
+
+            // Load pets when the page loads (edit mode)
+            loadPets(customerId, selectedPet);
+
+            // Load pets when the customer changes
+            $('#IdCustomer').change(function () {
+                var newCustomerId = $(this).val();
+                loadPets(newCustomerId, null);
+            });
+
+            // =============================
+            // PRICE CALCULATION
+            // =============================
+            function calculatePrices() {
+                var basePrice = 0;
+                var weight = parseFloat($('#Weight').val()) || 0;
+                var selectedRadio = $('input[name="ProcedureType"]:checked');
+
+                if (selectedRadio.length > 0) {
+                    var baseProcedurePrice = parseFloat(selectedRadio.data('precio')) || 0;
+                    var isPerKg = selectedRadio.data('por-kg') === true;
+
+                    if (isPerKg && weight > 0) {
+                        basePrice = baseProcedurePrice * weight;
+                    } else {
+                        basePrice = baseProcedurePrice;
+                    }
+                }
+
+                var vat = basePrice * 0.13;
+                var totalPrice = basePrice + vat;
+
+                $('#BasePrice').val(basePrice.toFixed(2));
+                $('#VAT').val(vat.toFixed(2));
+                $('#TotalPrice').val(totalPrice.toFixed(2));
+            }
+
+            $('.procedure-type').on('change', calculatePrices);
+            $('#Weight').on('input', calculatePrices);
+
+            var currentProcedureType = '@Model.ProcedureType';
+            if (currentProcedureType) {
+                $('input[name="ProcedureType"][value="' + currentProcedureType + '"]').prop('checked', true);
+            }
+
+            calculatePrices();
+        });
+    </script>
+}

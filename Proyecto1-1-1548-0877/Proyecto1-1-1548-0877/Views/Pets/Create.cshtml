@@ -1,0 +1,89 @@
+@model Proyecto1_1_1548_0877.Models.Pets
+
+@{
+    ViewData["Title"] = "Create Pet";
+}
+
+<h1>Create Pet</h1>
+
+<h4>Enter the pet's information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <fieldset class="border p-3 mb-3 rounded bg-light">
+                <legend class="w-auto px-2 h5">👤 Owner Information</legend>
+
+                <div class="form-group mb-3">
+                    <label asp-for="IdCustomer" class="control-label fw-bold">Owner</label>
+                    <select asp-for="IdCustomer" class="form-control" asp-items="@ViewBag.Customers" required>
+                        <option value="">-- Select a customer --</option>
+                    </select>
+                    <span asp-validation-for="IdCustomer" class="text-danger"></span>
+                    <small class="form-text text-muted">
+                        Select the customer who owns the pet.
+                        <a asp-controller="Customers" asp-action="Create" target="_blank">
+                            Not registered yet? Create a new customer
+                        </a>
+                    </small>
+                </div>
+            </fieldset>
+
+            <div class="form-group mb-3">
+                <label asp-for="PetName" class="control-label"></label>
+                <input asp-for="PetName" class="form-control" />
+                <span asp-validation-for="PetName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="AnimalSpecies" class="control-label"></label>
+                <select asp-for="AnimalSpecies" class="form-control" asp-items="@ViewBag.AnimalSpecies">
+                    <option value="">-- Select species --</option>
+                </select>
+                <span asp-validation-for="AnimalSpecies" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Breed" class="control-label"></label>
+                <input asp-for="Breed" class="form-control" />
+                <span asp-validation-for="Breed" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LastServiceDate" class="control-label"></label>
+                <input asp-for="LastServiceDate" class="form-control" type="date" />
+                <span asp-validation-for="LastServiceDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="PhoneOwner" class="control-label"></label>
+                <input asp-for="PhoneOwner" class="form-control" />
+                <span asp-validation-for="PhoneOwner" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="EmailOwner" class="control-label"></label>
+                <input asp-for="EmailOwner" class="form-control" />
+                <span asp-validation-for="EmailOwner" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="IndexPets" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

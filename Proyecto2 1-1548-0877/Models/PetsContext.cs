@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Proyecto1_1_1548_0877.Models
+namespace Proyecto2_1_1548_0877.Models
 {
     public class PetsContext : DbContext
     {
@@ -15,27 +15,28 @@ namespace Proyecto1_1_1548_0877.Models
         public DbSet<Procedures> Procedures { get; set; }
         public DbSet<Reports> Reports { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) //virtual method of the class base DbContext
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //virtual method of the base DbContext class
         {
             base.OnModelCreating(modelBuilder);
 
-            // Customerconfig
+            // Customer config
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("Customer"); //table
                 entity.HasKey(e => e.IdCustomer); //Primary key
-                entity.Property(e => e.IdCustomer).ValueGeneratedNever(); //ndo not generate automatic value
+                entity.Property(e => e.IdCustomer).ValueGeneratedNever(); //do not generate an automatic value
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(150);
-                entity.Property(e => e.City).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.State).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.City).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.Country).IsRequired().HasMaxLength(200);
                 entity.Property(e => e.Address).IsRequired().HasMaxLength(20);
+                entity.Property(e => e.Phone).IsRequired().HasMaxLength(20);
                 entity.Property(e => e.ContactPreference)
                     .HasMaxLength(20)
-                    .HasConversion<string>(); //enum a string
+                    .HasConversion<string>(); //enum to string
             });
 
-            // Employe config
+            // Employee config
             modelBuilder.Entity<Employes>(entity =>
             {
                 entity.ToTable("Employes");
@@ -91,16 +92,16 @@ namespace Proyecto1_1_1548_0877.Models
                 entity.Ignore(e => e.VAT);
                 entity.Ignore(e => e.TotalPrice);
 
-                // Client relation
+                // Relation with Customer
                 entity.HasOne<Customer>()
                     .WithMany()
                     .HasForeignKey(e => e.IdCustomer) //foreign key
                     .OnDelete(DeleteBehavior.Restrict);
 
-                // Pet relation
+                // RELATION WITH PET
                 entity.HasOne(p => p.Pets)
                     .WithMany()
-                    .HasForeignKey(p => p.PetId)
+                    .HasForeignKey(p => p.PetId) //foreign key
                     .OnDelete(DeleteBehavior.Restrict)
                     .IsRequired();
             });
@@ -125,7 +126,7 @@ namespace Proyecto1_1_1548_0877.Models
                 entity.Property(e => e.VAT).HasColumnType("decimal(10,2)");
                 entity.Property(e => e.TotalPrice).HasColumnType("decimal(10,2)");
 
-                // Relaciones
+                // Relations
                 entity.HasOne(r => r.Customer)
                       .WithMany()
                       .HasForeignKey(r => r.IdCustomer)

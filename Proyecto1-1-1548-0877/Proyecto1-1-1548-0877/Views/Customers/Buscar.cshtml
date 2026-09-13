@@ -1,0 +1,86 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Customer>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<form asp-action="Buscar" method="get" class="mb-3">
+    <div class="row">
+
+        <div class="col-md-2">
+            <input type="number" name="IdCustomer" class="form-control" placeholder="Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Name" class="form-control" placeholder="Name" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="City" class="form-control" placeholder="City" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="State" class="form-control" placeholder="State" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Country" class="form-control" placeholder="Country" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Address" class="form-control" placeholder="Address" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Phone" class="form-control" placeholder="Phone" />
+        </div>
+
+        <div class="col-md-2">
+            <select name="ContactPreference" class="form-control">
+                <option value="">-- Contact preference --</option>
+                @foreach (var pref in ViewBag.ContactPreference)
+                {
+                    <option value="@pref.Value">@pref.Text</option>
+                }
+            </select>
+        </div>
+
+    </div>
+
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="IndexCustomers" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Contact preference</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.IdCustomer</td>
+                <td>@customer.Name</td>
+                <td>@customer.City</td>
+                <td>@customer.State</td>
+                <td>@customer.Country</td>
+                <td>@customer.Address</td>
+                <td>@customer.Phone</td>
+                <td>@customer.ContactPreference</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@customer.IdCustomer" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@customer.IdCustomer" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

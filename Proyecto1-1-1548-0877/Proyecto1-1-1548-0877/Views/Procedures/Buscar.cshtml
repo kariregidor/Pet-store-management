@@ -1,0 +1,96 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Procedures>
+
+@{
+    ViewData["Title"] = "Search Procedures";
+}
+
+<h1>Search Procedures</h1>
+
+<form asp-action="Buscar" method="get" class="mb-3">
+    <div class="row g-2">
+        <div class="col-md-2">
+            <input type="number" name="Id" class="form-control" placeholder="Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="IdCustomer" class="form-control" placeholder="Customer Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="PetId" class="form-control" placeholder="Pet Id" />
+        </div>
+        <div class="col-md-2">
+            <select name="procedureType" class="form-control">
+                <option value="">-- Procedure type --</option>
+                @foreach (var esp in ViewBag.ProcedureType ?? new List<SelectListItem>())
+                {
+                    <option value="@esp.Value">@esp.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="number" step="0.01" name="weight" class="form-control" placeholder="Weight" />
+        </div>
+        <div class="col-md-2">
+            <input type="number" step="0.01" name="BasePrice" class="form-control" placeholder="Base price" />
+        </div>
+        <div class="col-md-2">
+            <select name="procedureStatus" class="form-control">
+                <option value="">-- Status --</option>
+                @foreach (var esp in ViewBag.ProcedureStatus ?? new List<SelectListItem>())
+                {
+                    <option value="@esp.Value">@esp.Text</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="IndexProcedures" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Customer Id</th>
+                <th>Pet name</th>
+                <th>Procedure type</th>
+                <th>Weight</th>
+                <th>Base price</th>
+                <th>VAT</th>
+                <th>Total price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var procedure in Model)
+            {
+                <tr>
+                    <td>@procedure.Id</td>
+                    <td>@procedure.IdCustomer</td>
+                    <td>@(procedure.Pets?.PetName ?? "N/A")</td>
+                    <td>@procedure.ProcedureType</td>
+                    <td>@(procedure.Weight?.ToString("F2") ?? "N/A")</td>
+                    <td>@procedure.BasePrice.ToString("C")</td>
+                    <td>@procedure.VAT.ToString("C")</td>
+                    <td>@procedure.TotalPrice.ToString("C")</td>
+                    <td>@procedure.Status</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@procedure.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@procedure.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info mt-3">
+        No procedures were found with the applied filters.
+    </div>
+}

@@ -1,0 +1,66 @@
+@model Proyecto1_1_1548_0877.Models.Employes
+
+@{
+    ViewData["Title"] = "Delete employe";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this employe?</h3>
+<div>
+    <h4>Employes</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.DateOfBirth)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.StartDate)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SalaryPerDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SalaryPerDay)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RetirementDate)
+        </dt>
+        <dd class="col-sm-10">
+            @String.Format("{0:dd-MM-yyyy}", Model.RetirementDate)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TypeEmploye)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TypeEmploye)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <!-- Changed to "Delete" -->
+        <input type="hidden" name="Id" value="@Model.Id" />
+        @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>
+<div>
+    <a asp-action="IndexEmployes">Back</a>
+</div>

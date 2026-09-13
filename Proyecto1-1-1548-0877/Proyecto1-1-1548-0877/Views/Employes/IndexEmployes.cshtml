@@ -1,0 +1,47 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Employes>
+
+@{
+    ViewData["Title"] = "👨‍⚕️ Employes";
+}
+
+<h1>👨‍⚕️ Employes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Create Employe</a>
+    <a asp-action="Buscar" class="btn btn-info">🔍 Search Employes</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.SalaryPerDay)</th>
+            <th>@Html.DisplayNameFor(model => model.RetirementDate)</th>
+            <th>@Html.DisplayNameFor(model => model.TypeEmploye)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@item.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                <td>@item.StartDate.ToString("dd/MM/yyyy")</td>
+                <td>@Html.DisplayFor(modelItem => item.SalaryPerDay)</td>
+                <td>@(item.RetirementDate.HasValue? item.RetirementDate.Value.ToString("dd/MM/yyyy") : "")</td>
+                <td>@Html.DisplayFor(modelItem => item.TypeEmploye)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>

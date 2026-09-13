@@ -1,0 +1,93 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Pets>
+
+@{
+    ViewData["Title"] = "🐾 Pets";
+}
+
+<h1>🐾 Pets</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Create Pet</a>
+    <a asp-action="Buscar" class="btn btn-info">🔍 Search Pets</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PetId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCustomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnimalSpecies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastServiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailOwner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetId)
+                </td>
+                <td>
+                    @(item.Customer != null ? item.Customer.IdCustomer.ToString() : item.IdCustomer.ToString())
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnimalSpecies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @item.LastServiceDate?.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailOwner)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PetId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PetId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>

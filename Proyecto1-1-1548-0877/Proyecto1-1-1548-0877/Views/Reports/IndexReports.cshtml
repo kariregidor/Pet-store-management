@@ -1,0 +1,76 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Reports>
+
+@{
+    ViewData["Title"] = "Procedure Report";
+}
+
+<h2>Procedure Report</h2>
+
+
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Report Id</th>
+                <th>Customer Id</th>
+                <th>Customer</th>
+                <th>Pet Id</th>
+                <th>Pet</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Weight</th>
+                <th>Base Price</th>
+                <th>VAT</th>
+                <th>Total Price</th>
+                <th>Vaccination Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdReport</td>
+                    <td>@item.IdCustomer</td>
+                    <td>@item.Name </td>
+                    <td>@item.PetId</td>
+                    <td>@item.PetName </td>
+                    <td>@item.ProcedureType?.ToString()  </td>
+                    <td>@item.ProcedureStatus.ToString()  </td>
+                    <td>@item.Weight?.ToString("N2")  </td>
+                    <td>@item.BasePrice?.ToString("C")  </td>
+                    <td>@item.VAT?.ToString("C")  </td>
+                    <td>@item.TotalPrice?.ToString("C")   </td>
+                    <td>@item.VaccinationDate?.ToString("dd/MM/yyyy")   </td>
+
+                    <td>
+                        <a asp-controller="Reports"
+                           asp-action="Delete"
+                           asp-route-id="@item.IdReport"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="alert alert-info">
+                <strong>Total records:</strong> @Model.Count()
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="text-muted mt-4">No results for the selected filters.</p>
+}
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>

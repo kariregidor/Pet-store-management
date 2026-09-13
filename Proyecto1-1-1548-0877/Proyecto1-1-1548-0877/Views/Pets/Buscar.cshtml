@@ -1,0 +1,91 @@
+@model IEnumerable<Proyecto1_1_1548_0877.Models.Pets>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<form asp-action="Buscar" method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="text" name="Id" class="form-control" placeholder="Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="IdCustomer" class="form-control" placeholder="Owner Id" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="PetName" class="form-control" placeholder="Pet name" />
+        </div>
+        <div class="col-md-2">
+            <select name="AnimalSpecies" class="form-control">
+                <option value="">-- Species --</option>
+                @foreach (var esp in ViewBag.AnimalSpecies)
+                {
+                    <option value="@esp.Value">@esp.Text</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Breed" class="form-control" placeholder="Breed" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Age" class="form-control" placeholder="Age" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="Color" class="form-control" placeholder="Color" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="LastServiceDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="PhoneOwner" class="form-control" placeholder="Owner's phone" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="EmailOwner" class="form-control" placeholder="Owner's email" />
+        </div>
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a asp-action="IndexPets" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Owner (Id)</th>
+            <th>Pet name</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Color</th>
+            <th>Last date of service</th>
+            <th>Owner's phone</th>
+            <th>Owner's email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pet in Model)
+        {
+            <tr>
+                <td>@pet.PetId</td>
+                <td>@(pet.Customer != null ? pet.Customer.IdCustomer.ToString() : pet.IdCustomer.ToString())</td>
+                <td>@pet.PetName</td>
+                <td>@pet.AnimalSpecies</td>
+                <td>@pet.Breed</td>
+                <td>@pet.Age</td>
+                <td>@pet.Color</td>
+                <td>@pet.LastServiceDate?.ToString("dd-MM-yyyy")</td>
+                <td>@pet.PhoneOwner</td>
+                <td>@pet.EmailOwner</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@pet.PetId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pet.PetId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

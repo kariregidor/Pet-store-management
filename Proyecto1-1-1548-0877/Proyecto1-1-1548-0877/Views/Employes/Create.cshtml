@@ -1,0 +1,60 @@
+@model Proyecto1_1_1548_0877.Models.Employes
+
+@{
+    ViewData["Title"] = "Create employe";
+}
+
+<h1>Create employe</h1>
+
+<h4>Enter the employe's information</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" type="date" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalaryPerDay" class="control-label"></label>
+                <input asp-for="SalaryPerDay" class="form-control" />
+                <span asp-validation-for="SalaryPerDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RetirementDate" class="control-label"></label>
+                <input asp-for="RetirementDate" class="form-control" type="date" />
+                <span asp-validation-for="RetirementDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeEmploye" class="control-label"></label>
+                <select asp-for="TypeEmploye" class="form-control" asp-items="ViewBag.TypeEmployes">
+                    <option value="">-- Select a type --</option>
+                </select>
+                <span asp-validation-for="TypeEmploye" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexEmployes">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
